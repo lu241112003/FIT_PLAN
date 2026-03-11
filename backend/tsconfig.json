@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    // Define para qual versão de JS o TypeScript vai "traduzir" o seu código
+    "target": "ES2020",
+
+    // Permite usar módulos no estilo moderno (import/export)
+    "module": "commonjs",
+
+    // Pasta onde o código compilado vai parar
+    "outDir": "./dist",
+
+    // Pasta raiz do código fonte
+    "rootDir": "./src",
+
+    // Ativa todas as verificações de tipo mais rigorosas
+    "strict": true,
+
+    // Permite importar arquivos JSON diretamente no TypeScript
+    "resolveJsonModule": true,
+
+    // Permite misturar módulos CommonJS e ES Modules sem erro
+    "esModuleInterop": true,
+
+    // Garante que os nomes de arquivos importados respeitem maiúsculas/minúsculas
+    "forceConsistentCasingInFileNames": true,
+
+    // Pula verificação de tipos nas bibliotecas externas (mais rápido)
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "src/prisma/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
