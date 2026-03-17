@@ -15,9 +15,11 @@ function getEnv(key: string): string {
 
 // aqui exportamos um objeto com as variáveis de ambiente que a aplicação precisa.
 export const env = {
-  databaseUrl: getEnv("DATABASE_URL"),
+  databaseUrl: getEnv("SUPABASE_URL"),
+  databaseAnonKey: getEnv("SUPABASE_ANON_KEY"),
   port: Number(process.env.PORT) || 3001,
   jwtSecret: getEnv("JWT_SECRET"),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
   nodeEnv: process.env.NODE_ENV || "development",
+
 };

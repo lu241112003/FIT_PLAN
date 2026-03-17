@@ -1,19 +1,18 @@
-require('dotenv').config({ path: '../.env'})
-
+const { env } = require('../backend/src/config/env')
+require('dotenv').config({ path: '../backend/.env'})
 const { createClient } = require('@supabase/supabase-js')
 
-const supabaseUrl = process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_ANON_KEY
-
-if (!supabaseUrl){
+if (!env.databaseUrl){
     throw new Error('SUPABASE_URL devem estar definidos no .env')
 }
- else if( !supabaseKey) {
+ else if( !env.databaseAnonKey) {
   throw new Error(' SUPABASE_ANON_KEY devem estar definidos no .env')
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabase = createClient(env.databaseUrl, env.databaseAnonKey)
 
-console.log('Supabase client criado com sucesso:', supabase)
+if (supabase){
+    console.log('Supabase client criado com sucesso!')
+}
 
 module.exports = { supabase }

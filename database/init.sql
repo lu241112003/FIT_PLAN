@@ -1,4 +1,4 @@
-
+    
 -- ============================================================
 -- FITPLAN — Banco de Dados Simplificado
 -- Sistema de geração de treinos (algoritmo) e plano alimentar (IA)
