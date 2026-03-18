@@ -1,9 +1,18 @@
-//Ajuda a importar o supabase do database aqui
-const { supabase } =  require('../../database/supabase')
+const { env } = require('../backend/src/config/env')
+require('dotenv').config({ path: '../backend/.env'})
+const { createClient } = require('@supabase/supabase-js')
 
+if (!env.databaseUrl){
+    throw new Error('SUPABASE_URL devem estar definidos no .env')
+}
+ else if( !env.databaseAnonKey) {
+  throw new Error(' SUPABASE_ANON_KEY devem estar definidos no .env')
+}
 
-const db = supabase({
-    log: ["query", "error", "warn"],
-});
+const supabase = createClient(env.databaseUrl, env.databaseAnonKey)
 
-export default db;
+if (supabase){
+    console.log('Supabase client criado com sucesso!')
+}
+
+export default supabase

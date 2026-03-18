@@ -4,7 +4,8 @@
     "target": "ES2020",
 
     // Permite usar módulos no estilo moderno (import/export)
-    "module": "commonjs",
+    "module": "NodeNext",
+
 
     // Pasta onde o código compilado vai parar
     "outDir": "./dist",
@@ -14,6 +15,8 @@
 
     // Ativa todas as verificações de tipo mais rigorosas
     "strict": true,
+
+    "moduleResolution": "NodeNext",
 
     // Permite importar arquivos JSON diretamente no TypeScript
     "resolveJsonModule": true,
