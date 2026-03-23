@@ -15,4 +15,4 @@ if (supabase){
     console.log('Supabase client criado com sucesso!')
 }
 
-export default supabase
+module.exports = { supabase }

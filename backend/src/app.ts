@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import routes from "./routes";
+import routes from "./routes/index";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 
 // app é o objeto principal do Express — é nele que configuramos tudo

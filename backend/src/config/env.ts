@@ -10,7 +10,8 @@ function getEnv(key: string): string {
 }
 
 export const env = {
-  databaseUrl: getEnv("DATABASE_URL"),
+  databaseUrl: getEnv("SUPABASE_URL"),
+  databaseAnonKey: getEnv("SUPABASE_ANON_KEY"),
   port: Number(process.env.PORT) || 3001,
   jwtSecret: getEnv("JWT_SECRET"),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
@@ -19,4 +20,5 @@ export const env = {
   groqApiKey: process.env.GROQ_API_KEY || "",
   corsOrigin: process.env.CORS_ORIGIN || "http://localhost:3000",
   nodeEnv: process.env.NODE_ENV || "development",
+
 };
