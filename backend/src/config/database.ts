@@ -1,5 +1,5 @@
-const { env } = require('../backend/src/config/env')
-require('dotenv').config({ path: '../backend/.env'})
+const { env } = require('./env')
+require('dotenv').config()
 const { createClient } = require('@supabase/supabase-js')
 
 if (!env.databaseUrl){
