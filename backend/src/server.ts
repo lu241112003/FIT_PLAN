@@ -1,11 +1,21 @@
 import app from "./app";
 import { env } from "./config/env";
-import db from "./config/database";
+import supabase from "./config/database";
 
 async function main() {
   try {
     // 🔍 Teste de acesso ao banco (não é conexão!)
-    const { error } = await db
+    const { error } = await supabase
+      .from("users")
+      .select("id")
+      .limit(1);
+
+    if (error) {
+      throw error;
+    }
+
+    console.log("✅ Supabase acessível");
+
       .from("users")
       .select("id")
       .limit(1);
