@@ -16,16 +16,6 @@ async function main() {
 
     console.log("✅ Supabase acessível");
 
-      .from("users")
-      .select("id")
-      .limit(1);
-
-    if (error) {
-      throw error;
-    }
-
-    console.log("✅ Supabase acessível");
-
     app.listen(env.port, () => {
       console.log(`🚀 Servidor rodando em http://localhost:${env.port}`);
       console.log(`🌱 Ambiente: ${env.nodeEnv}`);
