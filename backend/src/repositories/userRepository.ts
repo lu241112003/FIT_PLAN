@@ -1,68 +1,97 @@
+// src/repositories/userRepository.ts
+
 import supabase from '../config/database'
-import {
-User,
-CreateUserDTO,
-UpdateUserDTO,
-UserResponse
-}
-from '../models/User'
-import { promises } from 'dns'
-import { id } from 'zod/v4/locales/index.js'
+import { User, CreateUserDTO, UpdateUserDTO } from '../models/User'
+import { ApiError } from '../utils/apiError'
 
-export async function findUserById(id: string): Promise<UserResponse | null> {
-  const { data, error } = await supabase
-    .from('users')
-    .select('id, nome, email, criado_em')
-    .eq('id', id)
-    .single()
+export class UserRepository {
+  async findById(id: string): Promise<User | null> {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single()
 
-  if (error || !data) {
-    console.error('Erro ao buscar usuário no banco de dados!')
-    return null
+    if (error) {
+      if (error.code === 'PGRST116') return null
+      throw error
+    }
+
+    return data as User
   }
 
-  return data as UserResponse
-}
+  async findByEmail(email: string): Promise<User | null> {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single()
 
-export async function updateByUser(id:string): Promise<UserResponse | null> {
-    const {data, error} = await supabase
-    .from('users')
-    .update({ nome: 'Novo Nome' })
-    .eq('id', id)
-    .select('id, nome, email, criado_em')
-    .single()
-
-    if (error || !data) {
-        console.error('Erro ao conectar no banco de dados!')
-        return null
+    if (error) {
+      if (error.code === 'PGRST116') return null
+      throw error
     }
 
-    return data as UserResponse
-}
-
-export async function CreateByUser(id:string): Promise<UserResponse | null> {
-    const {data, error} = await supabase
-    .from('users')
-    .insert({ nome: 'Novo Nome', email: 'novoemail@example.com' })
-    .select('id, nome, email, criado_em')
-    .single()
-
-    if (error || !data) {
-        console.error('Erro ao conectar no banco de dados!')
-        return null
-    }
-
-    return data as UserResponse
-}
-
-export async function DeleteByUser(id:string): Promise<UserResponse | null> {
-    const {data, error} = await supabase
-    .delete('id, nome, email, criado_em')
-    .single()
-
-    if (error || !data) {
-        console.error('Erro ao conectar no banco de dados!')
-        return null
-    }
     return data as User
+  }
+
+  async findAll(): Promise<User[]> {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+
+    if (error) throw error
+    return (data as User[]) || []
+  }
+
+  async create(dto: CreateUserDTO): Promise<User> {
+    const { data, error } = await supabase
+      .from('users')
+      .insert([dto])
+      .select()
+      .single()
+
+    if (error) {
+      if (error.code === '23505') {
+        throw ApiError.conflict('Email já cadastrado')
+      }
+      throw error
+    }
+
+    return data as User
+  }
+
+  async update(id: string, dto: UpdateUserDTO): Promise<User> {
+    const { data, error } = await supabase
+      .from('users')
+      .update(dto)
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) {
+      if (error.code === '23505') {
+        throw ApiError.conflict('Email já cadastrado')
+      }
+      throw error
+    }
+
+    return data as User
+  }
+
+  async delete(id: string): Promise<void> {
+    const { error } = await supabase
+      .from('users')
+      .delete()
+      .eq('id', id)
+
+    if (error) throw error
+  }
+
+  async emailExists(email: string): Promise<boolean> {
+    const user = await this.findByEmail(email)
+    return user !== null
+  }
 }
+
+export const userRepository = new UserRepository()

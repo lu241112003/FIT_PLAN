@@ -1,79 +1,100 @@
-<<<<<<< HEAD
-import supabase from '../config/database'
-import {
-    UserProfile,
-    RestricaoAlimentar,
-    CreateRestricaoDTO,
-    UpdateUserProfileDTO,
-    CreateUserProfileDTO,
-    UserWithProfile
-} from '../models/UserProfile'
 
 
-export async function FindByUserProfile(id:string): Promise<UserWithProfile | null> {
-    const {data, error} = await supabase
-    .from('users')
-    .select('id', 'nome', 'email', 'criado_em')
-    .eq('id',id)
-    .single()
 
-    if (error || data) {
-        console.log("Não foi possível completar essa ação")
-    }
-    
-    return data as UserWithProfile
-}
-=======
-import { error } from 'console'
 import supabase from '../config/database'
 import {
   UserProfile,
-  RestricaoAlimentar,
   CreateUserProfileDTO,
   UpdateUserProfileDTO,
-  CreateRestricaoDTO
+  RestricaoAlimentar,
+  CreateRestricaoDTO,
 } from '../models/UserProfile'
+import { ApiError } from '../utils/apiError'
 
-export async function FindByUserProfile(id: string): Promise<UserProfile | null> {
-  const { data, error } = await supabase
-    .from('userProfile')
-    .select('id, sexo, data_nascimento, peso_kg, altura_cm, objetivo, nivel, dias_disponiveis, tempo_treino_min, criado_em')
-    .eq('id', id)
-    .single()
+export class ProfileRepository {
+  async findByUserId(userId: string): Promise<UserProfile | null> {
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('user_id', userId)
+      .single()
 
-  if (error || !data) {
-    console.log("Não foi possível se conectar ao banco de dados")
-    return null
+    if (error) {
+      if (error.code === 'PGRST116') return null
+      throw error
+    }
+
+    return data as UserProfile
   }
 
-  return data as UserProfile
-}
+  async create(dto: CreateUserProfileDTO): Promise<UserProfile> {
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .insert([dto])
+      .select()
+      .single()
 
-export async function DeleteByUserProfile(id: string): Promise<UserProfile | null> {
-  const { data, error } = await supabase
-    .from('userProfile')
-    .delete()
-    .eq('id', id)
-    .single()
+    if (error) {
+      if (error.code === '23505') {
+        throw ApiError.conflict('Perfil já existe para este usuário')
+      }
+      throw error
+    }
 
-  if (error || !data) {
-    console.log("Não foi possível se conectar ao banco de dados!")
-    return null
+    return data as UserProfile
   }
 
-  return data as UserProfile
+  async update(userId: string, dto: UpdateUserProfileDTO): Promise<UserProfile> {
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .update(dto)
+      .eq('user_id', userId)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data as UserProfile
+  }
+
+  async delete(userId: string): Promise<void> {
+    const { error } = await supabase
+      .from('user_profiles')
+      .delete()
+      .eq('user_id', userId)
+
+    if (error) throw error
+  }
+
+  // Restrições alimentares
+  async addRestriction(dto: CreateRestricaoDTO): Promise<RestricaoAlimentar> {
+    const { data, error } = await supabase
+      .from('restricoes_alimentares')
+      .insert([dto])
+      .select()
+      .single()
+
+    if (error) throw error
+    return data as RestricaoAlimentar
+  }
+
+  async getRestrictions(userId: string): Promise<RestricaoAlimentar[]> {
+    const { data, error } = await supabase
+      .from('restricoes_alimentares')
+      .select('*')
+      .eq('user_id', userId)
+
+    if (error) throw error
+    return (data as RestricaoAlimentar[]) || []
+  }
+
+  async removeRestriction(restrictionId: string): Promise<void> {
+    const { error } = await supabase
+      .from('restricoes_alimentares')
+      .delete()
+      .eq('id', restrictionId)
+
+    if (error) throw error
+  }
 }
 
-export async function UpdateByUserProfile(id: string): Promise<UserProfile | null> {
-  const {data, error} = await supabase
-  .from('UserProfile')
-  .eq('id', id )
-  .single()
-  if (error || !data) {
-    console.log("Não foi possível se conectar com o banco de dados!")
-    return null
-  }
-  return data as UserProfile
-  
-}
->>>>>>> fe2612a5a370ff67b7722107fd195ed7157a0d39
+export const profileRepository = new ProfileRepository()
