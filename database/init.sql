@@ -33,7 +33,7 @@ CREATE TABLE users (
 -- Dados físicos usados para gerar treino e alimentação
 -- ============================================================
 
-CREATE TABLE user_profile (
+CREATE TABLE user_profiles (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     
@@ -126,7 +126,7 @@ CREATE TABLE sessoes_treino (
 -- EXERCÍCIOS DA SESSÃO
 -- ============================================================
 
-CREATE TABLE sessao_exercicios (
+CREATE TABLE sessoes_exercicios (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     sessao_id UUID REFERENCES sessoes_treino(id) ON DELETE CASCADE,
     
@@ -244,3 +244,27 @@ INSERT INTO grupos_musculares (nome) VALUES
 ('Posterior de Coxa'),
 ('Panturrilha'),
 ('Corpo Todo');
+
+INSERT INTO alimentos (nome, calorias, proteinas_g, carboidratos_g, gorduras_g) VALUES
+('Frango grelhado', 165, 31, 0, 3.6),
+('Arroz integral cozido', 124, 2.6, 25.8, 1.0),
+('Ovo inteiro', 155, 13, 1.1, 11),
+('Batata doce cozida', 86, 1.6, 20.1, 0.1),
+('Aveia em flocos', 389, 16.9, 66.3, 6.9),
+('Banana', 89, 1.1, 22.8, 0.3),
+('Iogurte natural', 61, 3.5, 4.7, 3.3),
+('Salmão', 208, 20, 0, 13),
+('Brócolis', 34, 2.8, 6.6, 0.4),
+('Amendoim', 567, 25.8, 16.1, 49.2);
+
+INSERT INTO exercicios (nome, descricao, grupo_muscular_id, equipamento, nivel) VALUES
+('Supino reto com barra', 'Exercicio composto para peitoral', 1, 'barra', 'intermediario'),
+('Flexao de bracos', 'Exercicio de peso corporal para peitoral e triceps', 1, 'peso corporal', 'iniciante'),
+('Remada curvada', 'Exercicio composto para costas', 2, 'barra', 'intermediario'),
+('Puxada na frente', 'Exercicio para dorsais', 2, 'polia', 'iniciante'),
+('Desenvolvimento militar', 'Exercicio para ombros', 3, 'halteres', 'intermediario'),
+('Rosca direta', 'Exercicio isolado para biceps', 4, 'barra', 'iniciante'),
+('Triceps pulley', 'Exercicio isolado para triceps', 5, 'polia', 'iniciante'),
+('Prancha abdominal', 'Exercicio isometrico para core', 6, 'peso corporal', 'iniciante'),
+('Agachamento livre', 'Exercicio composto para quadriceps e gluteos', 8, 'barra', 'intermediario'),
+('Levantamento terra romeno', 'Exercicio para posterior de coxa e gluteos', 9, 'barra', 'avancado');

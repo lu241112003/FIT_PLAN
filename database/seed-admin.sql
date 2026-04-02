@@ -8,11 +8,15 @@
 -- Senha: admin123
 -- ============================================================
 
-INSERT INTO users (nome, email, senha_hash) VALUES (
+INSERT INTO users (nome, email, senha_hash)
+VALUES (
   'Admin FitPlan',
   'admin@fitplan.com',
-  '$2a$10$dXJ3SW6G7P50eIZQRQJAYO.N0fNRz0tXEGDPKgCvQ5mPWKMOTXzqS'
-);
+  '$2a$10$bVAX1lBQF949gth/XtZ99u7hadsd8rLhJlwgh1UGtfEghUs3IViT.'
+)
+ON CONFLICT (email) DO UPDATE
+SET nome = EXCLUDED.nome,
+    senha_hash = EXCLUDED.senha_hash;
 
 -- ============================================================
 -- OPCIONAL: Criar perfil padrão para o admin
@@ -24,7 +28,7 @@ INSERT INTO users (nome, email, senha_hash) VALUES (
 -- SELECT id FROM users WHERE email = 'admin@fitplan.com';
 
 -- Depois execute (substitua o UUID):
-INSERT INTO user_profile (
+INSERT INTO user_profiles (
   user_id,
   sexo,
   data_nascimento,
