@@ -33,7 +33,7 @@ CREATE TABLE users (
 -- Dados físicos usados para gerar treino e alimentação
 -- ============================================================
 
-CREATE TABLE user_profiles (
+CREATE TABLE user_profile (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     

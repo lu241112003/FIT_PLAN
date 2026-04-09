@@ -28,7 +28,7 @@ SET nome = EXCLUDED.nome,
 -- SELECT id FROM users WHERE email = 'admin@fitplan.com';
 
 -- Depois execute (substitua o UUID):
-INSERT INTO user_profiles (
+INSERT INTO user_profile (
   user_id,
   sexo,
   data_nascimento,

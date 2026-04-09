@@ -14,7 +14,7 @@ import { ApiError } from '../utils/apiError'
 export class ProfileRepository {
   async findByUserId(userId: string): Promise<UserProfile | null> {
     const { data, error } = await supabase
-      .from('user_profiles')
+      .from('user_profile')
       .select('*')
       .eq('user_id', userId)
       .single()
@@ -29,7 +29,7 @@ export class ProfileRepository {
 
   async create(dto: CreateUserProfileDTO): Promise<UserProfile> {
     const { data, error } = await supabase
-      .from('user_profiles')
+      .from('user_profile')
       .insert([dto])
       .select()
       .single()
@@ -46,7 +46,7 @@ export class ProfileRepository {
 
   async update(userId: string, dto: UpdateUserProfileDTO): Promise<UserProfile> {
     const { data, error } = await supabase
-      .from('user_profiles')
+      .from('user_profile')
       .update(dto)
       .eq('user_id', userId)
       .select()
@@ -58,7 +58,7 @@ export class ProfileRepository {
 
   async delete(userId: string): Promise<void> {
     const { error } = await supabase
-      .from('user_profiles')
+      .from('user_profile')
       .delete()
       .eq('user_id', userId)
 

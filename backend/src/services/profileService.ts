@@ -33,7 +33,7 @@ export class ProfileService {
   async getProfile(userId: string): Promise<any> {
     const profile = await profileRepository.findByUserId(userId)
     if (!profile) {
-      throw ApiError.notFound('Perfil não encontrado. Crie um perfil primeiro.')
+      return null
     }
 
     return this.enrichProfileWithCalculations(profile)

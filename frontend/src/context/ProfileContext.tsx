@@ -1,32 +1,38 @@
-// src/context/ProfileContext.tsx
-
-import React, { createContext, useState } from 'react'
-import { UserProfile, FoodRestriction } from '../types/user'
+import { createContext, useState } from "react";
+import type { FoodRestriction, UserProfile } from "../types/user";
 
 export interface ProfileContextType {
-  profile: UserProfile | null
-  restrictions: FoodRestriction[]
-  isLoading: boolean
-  setProfile: (profile: UserProfile | null) => void
-  setRestrictions: (restrictions: FoodRestriction[]) => void
-  setIsLoading: (loading: boolean) => void
+  profile: UserProfile | null;
+  restrictions: FoodRestriction[];
+  isLoading: boolean;
+  setProfile: (profile: UserProfile | null) => void;
+  setRestrictions: (restrictions: FoodRestriction[]) => void;
+  setIsLoading: (loading: boolean) => void;
 }
 
-export const ProfileContext = createContext<ProfileContextType | undefined>(undefined)
+export const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
-export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [profile, setProfile] = useState<UserProfile | null>(null)
-  const [restrictions, setRestrictions] = useState<FoodRestriction[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+interface ProfileProviderProps {
+  children: React.ReactNode;
+}
 
-  const value: ProfileContextType = {
-    profile,
-    restrictions,
-    isLoading,
-    setProfile,
-    setRestrictions,
-    setIsLoading,
-  }
+export function ProfileProvider({ children }: ProfileProviderProps) {
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [restrictions, setRestrictions] = useState<FoodRestriction[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  return <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
+  return (
+    <ProfileContext.Provider
+      value={{
+        profile,
+        restrictions,
+        isLoading,
+        setProfile,
+        setRestrictions,
+        setIsLoading,
+      }}
+    >
+      {children}
+    </ProfileContext.Provider>
+  );
 }
