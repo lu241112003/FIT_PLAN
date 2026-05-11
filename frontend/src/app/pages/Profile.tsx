@@ -182,6 +182,7 @@ export default function Profile() {
                   <Input
                     id="altura"
                     type="number"
+                    step="1"
                     value={formData.altura_cm || ""}
                     onChange={(event) =>
                       setFormData((prev) => ({ ...prev, altura_cm: Number(event.target.value || 0) }))

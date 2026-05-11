@@ -1,19 +1,21 @@
 // src/utils/generateToken.ts
 
-import jwt from 'jsonwebtoken'
+import jwt, { Secret, SignOptions } from 'jsonwebtoken'
 import { env } from '../config/env'
 import { TokenPayload } from '../types/auth'
 
 export function generateToken(payload: TokenPayload): string {
-  return jwt.sign(payload, env.jwtSecret, {
-    expiresIn: env.jwtExpiresIn,
-  })
+  const options: SignOptions = {
+    expiresIn: env.jwtExpiresIn as any,
+  }
+  return jwt.sign(payload, env.jwtSecret as Secret, options)
 }
 
 export function generateRefreshToken(payload: TokenPayload): string {
-  return jwt.sign(payload, env.jwtRefreshSecret, {
-    expiresIn: env.jwtRefreshExpiresIn,
-  })
+  const options: SignOptions = {
+    expiresIn: env.jwtRefreshExpiresIn as any,
+  }
+  return jwt.sign(payload, env.jwtRefreshSecret as Secret, options)
 }
 
 export function verifyToken(token: string): TokenPayload {
