@@ -1,5 +1,3 @@
-// src/controllers/workoutController.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { workoutService } from '../services/workoutService'
 import { ApiError } from '../utils/apiError'

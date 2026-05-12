@@ -1,5 +1,3 @@
-// src/middlewares/authMiddleware.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { ApiError } from '../utils/apiError'
 import { verifyToken } from '../utils/generateToken'

@@ -12,7 +12,7 @@ INSERT INTO users (nome, email, senha_hash)
 VALUES (
   'Admin FitPlan',
   'admin@fitplan.com',
-  '$2a$10$bVAX1lBQF949gth/XtZ99u7hadsd8rLhJlwgh1UGtfEghUs3IViT.'
+  '$2b$12$6uboVx.y2opV/0sJCA7GrOicbgCiSbhmG/JXIUpoEAYokCEW6evae'
 )
 ON CONFLICT (email) DO UPDATE
 SET nome = EXCLUDED.nome,

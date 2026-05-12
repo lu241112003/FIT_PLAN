@@ -5,7 +5,7 @@ import { seedAdminUser } from "./utils/seedAdmin";
 
 async function main() {
   try {
-    // 🔍 Teste de acesso ao banco (não é conexão!)
+    //  Teste de acesso ao banco (não é conexão!)
     const { error } = await supabase
       .from("users")
       .select("id")
@@ -15,18 +15,18 @@ async function main() {
       throw error;
     }
 
-    console.log("✅ Supabase acessível");
+    console.log("Supabase acessível");
 
-    // 👤 Garante que o usuário Admin exista no banco ao iniciar
+    //  Garante que o usuário Admin exista no banco ao iniciar
     await seedAdminUser();
 
     app.listen(env.port, () => {
-      console.log(`🚀 Servidor rodando em http://localhost:${env.port}`);
-      console.log(`🌱 Ambiente: ${env.nodeEnv}`);
+      console.log(`Servidor rodando em http://localhost:${env.port}`);
+      console.log(`Ambiente: ${env.nodeEnv}`);
     });
 
   } catch (error: any) {
-    console.error("❌ Falha ao acessar o Supabase:");
+    console.error("Falha ao acessar o Supabase:");
     console.error(error.message || error);
     process.exit(1);
   }

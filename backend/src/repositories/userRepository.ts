@@ -1,5 +1,3 @@
-// src/repositories/userRepository.ts
-
 import supabase from '../config/database'
 import { User, CreateUserDTO, UpdateUserDTO } from '../models/User'
 import { ApiError } from '../utils/apiError'

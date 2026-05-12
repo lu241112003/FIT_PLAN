@@ -1,5 +1,3 @@
-// src/routes/workoutRoutes.ts
-
 import { Router } from 'express'
 import { workoutController } from '../controllers/workoutController'
 import { authMiddleware } from '../middlewares/authMiddleware'

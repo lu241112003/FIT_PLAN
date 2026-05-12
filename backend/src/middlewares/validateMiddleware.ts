@@ -1,5 +1,3 @@
-// src/middlewares/validateMiddleware.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { z, ZodSchema } from 'zod'
 import { ApiError } from '../utils/apiError'

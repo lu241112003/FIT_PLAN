@@ -1,5 +1,3 @@
-// src/models/WorkoutPlan.ts
-
 import { Objetivo, Nivel } from './User'
 import { Exercicio } from './Exercicio'
 

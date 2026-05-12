@@ -1,5 +1,3 @@
-// src/services/authService.ts
-
 import { User } from '../models/User'
 import { userRepository } from '../repositories/userRepository'
 import { hashPassword, comparePassword } from '../utils/hashPassword'

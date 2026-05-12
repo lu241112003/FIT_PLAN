@@ -1,5 +1,3 @@
-// src/repositories/dietRepository.ts
-
 import supabase from '../config/database'
 import {
   PlanoAlimentar,

@@ -1,5 +1,3 @@
-// src/middlewares/errorMiddleware.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { ApiError } from '../utils/apiError'
 
@@ -9,7 +7,7 @@ export function errorMiddleware(
   res: Response,
   next: NextFunction
 ): void {
-  console.error('❌ Erro:', err)
+  console.error('Erro:', err)
 
   if (err instanceof ApiError) {
     res.status(err.statusCode).json({

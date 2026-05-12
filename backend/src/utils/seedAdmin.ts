@@ -35,10 +35,10 @@ export async function seedAdminUser() {
       if (insertError) {
         console.error('Erro ao criar usuário admin principal:', insertError);
       } else {
-        console.log(`✅ Usuário admin criado com sucesso! Email: ${adminEmail} | Senha: ${adminPassword}`);
+        console.log(`Usuário admin criado com sucesso! Email: ${adminEmail} | Senha: ${adminPassword}`);
       }
     } else {
-      console.log('✅ Usuário admin já existe no banco de dados.');
+      console.log('Usuário admin já existe no banco de dados.');
     }
   } catch (error) {
     console.error('Erro no script de seed do admin:', error);

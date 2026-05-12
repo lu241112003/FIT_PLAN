@@ -1,5 +1,3 @@
-// src/models/Exercicio.ts
-
 import { Nivel } from './User'
 
 export interface GrupoMuscular {

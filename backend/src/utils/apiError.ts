@@ -1,5 +1,3 @@
-// src/utils/apiError.ts
-
 export class ApiError extends Error {
   constructor(
     public statusCode: number,

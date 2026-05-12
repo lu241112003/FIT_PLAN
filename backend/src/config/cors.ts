@@ -1,5 +1,3 @@
-// src/config/cors.ts
-
 import { env } from './env'
 
 const allowedOrigins = env.corsOrigin

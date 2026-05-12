@@ -1,5 +1,3 @@
-// src/repositories/workoutRepository.ts
-
 import supabase from '../config/database'
 import {
   PlanoTreino,

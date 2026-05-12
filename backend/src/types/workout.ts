@@ -1,5 +1,3 @@
-// src/types/workout.ts
-
 import {
   PlanoTreinoCompleto,
   SessaoTreinoComExercicios,

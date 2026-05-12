@@ -1,5 +1,3 @@
-// src/controllers/profileController.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { profileService } from '../services/profileService'
 import { ApiError } from '../utils/apiError'

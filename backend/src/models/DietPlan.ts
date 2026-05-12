@@ -1,5 +1,3 @@
-// src/models/DietPlan.ts
-
 import { Objetivo } from './User'
 
 export type TipoRefeicao =

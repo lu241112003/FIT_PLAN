@@ -1,5 +1,3 @@
-// src/types/diet.ts
-
 import {
   PlanoAlimentarCompleto,
   Alimento,

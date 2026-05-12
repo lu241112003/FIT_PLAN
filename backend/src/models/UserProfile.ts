@@ -1,5 +1,3 @@
-// src/models/UserProfile.ts
-
 import { Sexo, Objetivo, Nivel, UserResponse } from './User'
 
 export interface UserProfile {

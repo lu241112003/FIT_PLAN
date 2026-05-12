@@ -1,5 +1,3 @@
-// src/models/User.ts
-
 export type Sexo = 'masculino' | 'feminino' | 'outro'
 
 export type Objetivo =

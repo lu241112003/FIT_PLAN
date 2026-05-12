@@ -1,5 +1,3 @@
-// src/routes/dietRoutes.ts
-
 import { Router } from 'express'
 import { dietController } from '../controllers/dietController'
 import { authMiddleware } from '../middlewares/authMiddleware'

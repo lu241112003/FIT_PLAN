@@ -1,5 +1,3 @@
-// src/utils/calculateIMC.ts
-
 export function calculateIMC(peso_kg: number, altura_cm: number): number {
   if (altura_cm <= 0 || peso_kg <= 0) {
     throw new Error('Peso e altura devem ser maiores que zero')

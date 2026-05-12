@@ -1,5 +1,3 @@
-// src/controllers/userController.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { userService } from '../services/userService'
 import { ApiError } from '../utils/apiError'

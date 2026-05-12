@@ -1,5 +1,3 @@
-// src/utils/generateToken.ts
-
 import jwt, { Secret, SignOptions } from 'jsonwebtoken'
 import { env } from '../config/env'
 import { TokenPayload } from '../types/auth'

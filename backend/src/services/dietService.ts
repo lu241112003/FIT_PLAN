@@ -1,5 +1,3 @@
-// src/services/dietService.ts
-
 import { dietRepository } from '../repositories/dietRepository'
 import { userRepository } from '../repositories/userRepository'
 import { ApiError } from '../utils/apiError'

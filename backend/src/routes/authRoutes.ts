@@ -1,5 +1,3 @@
-// src/routes/authRoutes.ts
-
 import { Router } from 'express'
 import { authController } from '../controllers/authController'
 import { authMiddleware } from '../middlewares/authMiddleware'

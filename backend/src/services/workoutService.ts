@@ -1,5 +1,3 @@
-// src/services/workoutService.ts
-
 import { workoutRepository } from '../repositories/workoutRepository'
 import { userRepository } from '../repositories/userRepository'
 import { ApiError } from '../utils/apiError'

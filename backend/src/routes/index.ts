@@ -1,5 +1,3 @@
-// src/routes/index.ts
-
 import { Router } from 'express'
 import authRoutes from './authRoutes'
 import userRoutes from './userRoutes'

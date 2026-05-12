@@ -1,5 +1,3 @@
-// src/controllers/dietController.ts
-
 import { Request, Response, NextFunction } from 'express'
 import { dietService } from '../services/dietService'
 import { ApiError } from '../utils/apiError'

@@ -9,7 +9,7 @@ function getEnv(key: string, optional = false): string {
         (key === 'SUPABASE_URL' || key === 'SUPABASE_ANON_KEY')) {
       return '';
     }
-    throw new Error(`❌ Variável de ambiente obrigatória não encontrada: ${key}`);
+    throw new Error(`Variável de ambiente obrigatória não encontrada: ${key}`);
   }
   return value || '';
 }

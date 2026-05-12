@@ -1,5 +1,3 @@
-// src/repositories/templateRepository.ts
-
 import supabase from '../config/database'
 import { Exercicio, GrupoMuscular } from '../models/Exercicio'
 import { ApiError } from '../utils/apiError'

@@ -1,5 +1,3 @@
-// src/services/profileService.ts
-
 import { UserProfile } from '../models/UserProfile'
 import { profileRepository } from '../repositories/profileRepository'
 import { userRepository } from '../repositories/userRepository'
